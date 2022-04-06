@@ -8,7 +8,7 @@
 		
 
 		public function __construct($nome, $tipoPlano, $abrangenciaAtuacao, $tipoAtendimento){
-			$this->nome = $nome;
+			$this->nome = $nome; //diagrama
 			$this->tipoPlano = $tipoPlano;
 			$this->abrangenciaAtuacao = $abrangenciaAtuacao;
 			$this->tipoAtendimento = $tipoAtendimento;			
