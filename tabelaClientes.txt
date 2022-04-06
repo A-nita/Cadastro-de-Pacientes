@@ -1,0 +1,22 @@
+Criar o banco de Dados:
+CREATE DATABASE SysExamesMedicos;
+
+Criar a tabela de pacientes:
+CREATE TABLE Paciente(
+    cpf VARCHAR(12) NOT NULL PRIMARY KEY,
+    nome VARCHAR(60) NOT NULL,
+    nome_social VARCHAR(60),
+    data_nascimento DATE NOT NULL,
+    sexo VARCHAR(2) NOT NULL,
+    telefone VARCHAR(13) NOT NULL,
+	convenio INT(6) FOREIGN KEY convenio_fk (),
+	n_convenio VARCHAR(13)
+)
+
+Criar a tebela de convenios:
+CREATE TABLE Convenios(
+    name VARCHAR(40) PRIMARY KEY,
+    tipo_plano VARCHAR(40) NOT NULL,
+    abranjenciaAtuação VARCHAR(40) NOT NULL,
+    tipo_atendimento VARCHAR(40) NOT NULL
+)
