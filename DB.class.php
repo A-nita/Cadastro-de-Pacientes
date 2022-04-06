@@ -1,13 +1,12 @@
 <?php
-include("cliente.class.php");
+include("paciente.class.php");
+include("convenio.class.php");
 	class DB {
 		private $servername = "localhost";
 		private $username = "root";
 		private $password = "";
-		private $dbname = "myDB";
+		private $dbname = "SysExamesMedicos";
 		private $conn;
-
-		private $inserirPaciente = "INSERT INTO paciente (cpf, nome, nome_social, data_nascimento, sexo, telefone) VALUES ('".$cliente.cpf."','".$cliente.nome."', '".$cliente.nomeSocial."', '".$cliente.dataNascimento."', '".$cliente.sexo."', '".$cliente.telefone."')";
 
 		public function conectaDB() {
 			$this->conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -22,12 +21,12 @@ include("cliente.class.php");
 			mysqli_close($this->conn);
 		}
 
-		public function insertTablePaciente(Cliente $cliente) {
+		public function insertTablePaciente(paciente $paciente) {
 			if(!$this->conn){
 				$msg = "Falha na conexão";
 			}
 			else {
-				$sql = $this->inserirPaciente;
+				$sql = "INSERT INTO paciente (cpf, nome, nome_social, data_nascimento, sexo, telefone) VALUES ('".$paciente.cpf."','".$paciente.nome."', '".$paciente.nomeSocial."', '".$paciente.dataNascimento."', '".$paciente.sexo."', '".$paciente.telefone."')";
 				if(mysqli_query($conn, $sql)) {	
 					$msg = 'Dados inseridos';
 				} else {
@@ -37,15 +36,21 @@ include("cliente.class.php");
 			return $msg;
 		}
 
-		
-		private static function __construct () {}
-		
-		
-		if(!$this->conn) {
-			die("Connection failed: " . mysqli_connect_error());
+		public function insertTableConvenio(Convenio $convenio) {
+			if(!$this->conn){
+				$msg = "Falha na conexão";
+			}
+			else {
+				$sql = "INSERT INTO convenios (name, tipo_plano, abranjencia_atuacao, tipo_atendimento) VALUES ('".$convenio->nome."','".$covenio->tipoPlano."', '".$convenio->abranjenciaAtuação."', '".$convenio->tipoAtendimento."')";
+				if(mysqli_query($conn, $sql)) {	
+					$msg = 'Dados inseridos';
+				} else {
+					$msg = $sql;
+				}
+			}
+			return $msg;
 		}
-		
-		
 
 
+	}		
 ?>

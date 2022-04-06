@@ -1,6 +1,6 @@
 <?php
-	class Cliente{
-		private $cliente;
+	class Paciente{
+		private $paciente;
 		private $convenio;
 		
 
@@ -10,23 +10,23 @@
 		}
 
 		public function buscarCPF($cpf){
-			return $this->cliente;
+			return $this->paciente;
 		}
 
-		public function cadastrarCliente($cliente) {
-			return $cliente;
+		public function cadastrarPaciente($paciente) {
+			return $paciente;
 		}
 
-		public function excluirCliente($cpf) {
+		public function excluirPaciente($cpf) {
 			return $excluido;
 		}
 
-		public function editarCliente($cpf) {
-			return $cliente;
+		public function editarPaciente($cpf) {
+			return $Paciente;
 		}
 
-		public function exibirCliente($cpf) {
-			return $cliente;
+		public function exibirPaciente($cpf) {
+			return $pSaciente;
 		}
 	}
 ?>

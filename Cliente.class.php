@@ -9,7 +9,7 @@
 		private $convenio;
 		private $nConvenio;
 
-		public function __construct($cpf, $nome, $dataNascimento, $sexo, $telefone, $nomeSocial, $convenio, $nCarteirinha){
+		public function __construct($cpf, $nome, $dataNascimento, $sexo, $telefone){
 			$this->cpf = $cpf;
 			$this->nome = $nome;
 			$this->dataNascimento = $dataNascimento;

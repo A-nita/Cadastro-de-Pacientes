@@ -14,9 +14,9 @@ CREATE TABLE Paciente(
 )
 
 Criar a tebela de convenios:
-CREATE TABLE Convenios(
-    name VARCHAR(40) PRIMARY KEY,
+CREATE TABLE Convenio(
+    name VARCHAR(40) NOT NULL PRIMARY KEY,
     tipo_plano VARCHAR(40) NOT NULL,
-    abranjenciaAtuação VARCHAR(40) NOT NULL,
+    abranjenciaAtuacao VARCHAR(40) NOT NULL,
     tipo_atendimento VARCHAR(40) NOT NULL
 )
