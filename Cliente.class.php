@@ -34,7 +34,7 @@
 		}
 
 		public function setNome($nome) {
-			$this->cpf = $nome;
+			$this->nome = $nome;
 		}
 
 		public function getNomeSocial() {
