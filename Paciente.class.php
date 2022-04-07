@@ -1,5 +1,5 @@
 <?php
-	class Cliente{
+	class Paciente{
 		private $cpf;
 		private $nome;
 		private $nomeSocial;
@@ -15,9 +15,9 @@
 			$this->dataNascimento = $dataNascimento;
 			$this->sexo = $sexo;
 			$this->telefone = $telefone;
-			//$this->nomeSocial = $nomeSocial;
-			//$this->convenio = $convenio;
-			//$this->nCarteirinha = $nCarteirinha;
+			$this->nomeSocial = "";
+			$this->convenio = "";
+			$this->nConvenio = "";
 
 		}
 
