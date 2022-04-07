@@ -16,13 +16,22 @@
 	// else{
 	// 	echo "Erro de conexão";
 	// }
-	$p = new Paciente();
-	$p->retrieveTablePaciente("49297634801", $conn);
- 	$p->setNomeSocial("Titi");
-	$p->updateTablePaciente($conn);
-	$p->deletePaciente($conn);
-	echo($p->getNome());
+	// $p = new Paciente();
+	// $p->retrieveTablePaciente("49297634801", $conn);
+ 	// $p->setNomeSocial("Titi");
+	// $p->updateTablePaciente($conn);
+	// $p->deletePaciente($conn);
+	// echo($p->getNome());
+	$c = new Convenio();
+	$c->setNome("Unimed");
+	$c->setTipoPlano("NULL");
+	$c->setAbrangenciaAtuacao("AbrangenciaMédixa");
+	$c->setTipoAtendimento("tipo_atendimento");
 
+	$c->insertTableConvenio($conn);
+	
+	$c->retrieveTableConvenio($conn);
+	echo $c->getTipoPlano();
 
 
 	$db->closeConn();
