@@ -1,7 +1,7 @@
 <?php
 	class Convenio{
 		private $tipoPlano;
-		private $abranjenciaAtuacao;
+		private $abrangenciaAtuacao;
 		private $tipoAtendimento;
 		//deveria ter um nome do plano né não
 		private $nome;

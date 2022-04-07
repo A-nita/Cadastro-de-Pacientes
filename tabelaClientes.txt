@@ -17,6 +17,6 @@ Criar a tebela de convenios:
 CREATE TABLE Convenio(
     nome VARCHAR(40) NOT NULL PRIMARY KEY,
     tipo_plano VARCHAR(40) NOT NULL,
-    abranjenciaAtuacao VARCHAR(40) NOT NULL,
+    abrangencia_atuacao VARCHAR(40) NOT NULL,
     tipo_atendimento VARCHAR(40) NOT NULL
 )

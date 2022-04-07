@@ -6,7 +6,7 @@ function MyAutoLoad($classname) {
 spl_autoload_extensions('.class.php');
 spl_autoload_register('MyAutoLoad');
 	
-$c = new Convenio("Unimed", "Plano de saúde", "AbranjenciaMédixa", "Atendimento top");
+$c = new Convenio("Unimed", "Plano de saúde", "AbrangenciaMédixa", "Atendimento top");
 echo $c->getNome();
 $db = new DB();
 $db->conectaDB();
@@ -67,7 +67,7 @@ echo "Conexão Encerrada";
 				$msg = "Falha na conexão";
 			}
 			else {
-				$sql = "INSERT INTO convenio (nome, tipo_plano, abranjenciaAtuacao, tipo_atendimento) VALUES ('".$c->getNome()."','".$c->getTipoPlano()."', '".$c->getAbrangenciaAtuacao()."', '".$c->getTipoAtendimento()."')";
+				$sql = "INSERT INTO convenio (nome, tipo_plano, abrangencia_atuacao, tipo_atendimento) VALUES ('".$c->getNome()."','".$c->getTipoPlano()."', '".$c->getAbrangenciaAtuacao()."', '".$c->getTipoAtendimento()."')";
 				if(mysqli_query($this->conn, $sql)) {	
 					$msg = 'Dados inseridos';
 				} else {
@@ -90,6 +90,29 @@ echo "Conexão Encerrada";
 					while($row = $dados->fetch_assoc()) {
 						echo "cpf: " . $row["cpf"]. " - Name: " . $row["nome"]. " <br>";
 						$p = new Paciente($row["cpf"], $row["nome"], $row["data_nascimento"], $row["sexo"], $row["telefone"]);
+						$p->setNomeSocial = $row["nome_social"];
+						return $p;
+					}
+				} else {
+					return NULL;
+					echo "0 results";
+				}
+			}
+		}
+
+		public function retrieveTableConvenio($nome) {
+			if(!$this->conn){
+				$msg = "Falha na conexão";
+			}
+			else {
+				$sql = "SELECT * FROM convenio WHERE nome = '".$nome."'";
+				$dados = $this->conn->query($sql);
+			
+				if ($dados->num_rows > 0) {					
+					// output data of each row
+					while($row = $dados->fetch_assoc()) {
+						echo "nome: " . $row["nome"]. " - Name: " . $row["nome"]. " <br>";
+						$c = new Convenio($row["nome"], $row["tipo_plano"], $row["abrangencia_atuacao"], $row["tipo_atendimento"]);
 						$p->setNomeSocial = $row["nome_social"];
 						return $p;
 					}
