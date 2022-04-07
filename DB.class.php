@@ -11,8 +11,8 @@ echo $c->getNome();
 $db = new DB();
 $db->conectaDB();
 $db->insertTableConvenio($c);
-// // $p2 = $db->retrieveTablePaciente("12345678910");
-// // echo $p2->getNome();
+$c2 = $db->retrieveTableConvenio("Unimed");
+echo $c2->getNome();
 $db->fechaDB();
 echo "Conexão Encerrada";
 
@@ -113,8 +113,7 @@ echo "Conexão Encerrada";
 					while($row = $dados->fetch_assoc()) {
 						echo "nome: " . $row["nome"]. " - Name: " . $row["nome"]. " <br>";
 						$c = new Convenio($row["nome"], $row["tipo_plano"], $row["abrangencia_atuacao"], $row["tipo_atendimento"]);
-						$p->setNomeSocial = $row["nome_social"];
-						return $p;
+						return $c;
 					}
 				} else {
 					return NULL;
