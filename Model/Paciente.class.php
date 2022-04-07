@@ -6,8 +6,6 @@
 		private $dataNascimento;
 		private $sexo;
 		private $telefone;
-		private $convenio;
-		private $nConvenio;
 
 		public function __construct($cpf, $nome, $dataNascimento, $sexo, $telefone){
 			$this->cpf = $cpf;
@@ -16,9 +14,6 @@
 			$this->sexo = $sexo;
 			$this->telefone = $telefone;
 			$this->nomeSocial = "";
-			$this->convenio = "";
-			$this->nConvenio = "";
-
 		}
 
 		public function getCpf(){
@@ -69,20 +64,6 @@
 			$this->telefone = $Telefone;
 		}
 
-		public function getConvenio() {
-			return $this->convenio;
-		}
 
-		public function setConvenio(Convenio $convenio) {
-			$this->convenio = $convenio;
-		}
-
-		public function getNCarteirinha() {
-			return $this->nCarteirinha;
-		}
-
-		public function setNCarteirinha($nCarteirinha) {
-			$this->nCarteirinha = $nCarteirinha;
-		}
 	}
 ?>
