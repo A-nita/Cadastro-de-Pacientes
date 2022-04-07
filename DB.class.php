@@ -5,15 +5,14 @@ function MyAutoLoad($classname) {
 }
 spl_autoload_extensions('.class.php');
 spl_autoload_register('MyAutoLoad');
-
-
-
 	
-$p = new Paciente("49297564801", "Maria Anita", "2000-05-04", "F", "015997500769");
+$c = new Convenio("Unimed", "Plano de saúde", "AbranjenciaMédixa", "Atendimento top");
+echo $c->getNome();
 $db = new DB();
 $db->conectaDB();
-$p2 = $db->retrieveTablePaciente("49297564801");
-echo $p2->getNome();
+$db->insertTableConvenio($c);
+// // $p2 = $db->retrieveTablePaciente("12345678910");
+// // echo $p2->getNome();
 $db->fechaDB();
 echo "Conexão Encerrada";
 
@@ -32,21 +31,6 @@ echo "Conexão Encerrada";
 			$this->conn = "";
 		}
 
-		public function queryPaciente(Paciente $paciente) {
-			if(!$this->conn){
-				$msg = "Falha na conexão";
-			}
-			else {
-				$sql = "SELECT * FROM `paciente`;";
-
-				if(mysqli_query($this->conn, $sql)) {	
-					$msg = 'Dados inseridos';
-				} else {
-					$msg = $sql;
-				}
-			}
-			return $msg;
-		}
 		public function conectaDB() {
 			$this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -67,7 +51,7 @@ echo "Conexão Encerrada";
 				$msg = "Falha na conexão";
 			}
 			else {
-				$sql = "INSERT INTO `paciente` (`cpf`, `nome`, `nome_social`, `data_nascimento`, `sexo`, `telefone`) VALUES ('".$paciente->getCPF()."','".$paciente->getNome()."', '".$paciente->getNomeSocial()."', '".$paciente->getDataNascimento()."', '".$paciente->getSexo()."', '".$paciente->getTelefone()."')";
+				$sql = "INSERT INTO paciente (cpf, nome, nome_social, data_nascimento, sexo, telefone) VALUES ('".$paciente->getCPF()."','".$paciente->getNome()."', '".$paciente->getNomeSocial()."', '".$paciente->getDataNascimento()."', '".$paciente->getSexo()."', '".$paciente->getTelefone()."')";
 
 				if(mysqli_query($this->conn, $sql)) {	
 					$msg = 'Dados inseridos';
@@ -78,13 +62,13 @@ echo "Conexão Encerrada";
 			return $msg;
 		}
 
-		public function insertTableConvenio(Convenio $convenio) {
+		public function insertTableConvenio(Convenio $c) {
 			if(!$this->conn){
 				$msg = "Falha na conexão";
 			}
 			else {
-				$sql = "INSERT INTO convenios (name, tipo_plano, abranjencia_atuacao, tipo_atendimento) VALUES ('".$convenio->nome."','".$covenio->tipoPlano."', '".$convenio->abranjenciaAtuação."', '".$convenio->tipoAtendimento."')";
-				if(mysqli_query($conn, $sql)) {	
+				$sql = "INSERT INTO convenio (nome, tipo_plano, abranjenciaAtuacao, tipo_atendimento) VALUES ('".$c->getNome()."','".$c->getTipoPlano()."', '".$c->getAbrangenciaAtuacao()."', '".$c->getTipoAtendimento()."')";
+				if(mysqli_query($this->conn, $sql)) {	
 					$msg = 'Dados inseridos';
 				} else {
 					$msg = $sql;
@@ -110,9 +94,9 @@ echo "Conexão Encerrada";
 						return $p;
 					}
 				} else {
+					return NULL;
 					echo "0 results";
 				}
-
 			}
 		}
 	}		

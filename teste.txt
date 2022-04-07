@@ -1,0 +1,7 @@
+$p = new Paciente("12345678910", "Paulao", "2002-06-04", "M", "011998800776");
+$db = new DB();
+$db->conectaDB();
+$db->insertTablePaciente($p);
+$p2 = $db->retrieveTablePaciente("12345678910");
+echo $p2->getNome();
+$db->fechaDB();
