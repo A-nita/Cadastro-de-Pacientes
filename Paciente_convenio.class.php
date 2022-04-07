@@ -1,4 +1,5 @@
 <?php
+namespace Model;
 	class Paciente{
 		private $cpf;
 		private $convenio;

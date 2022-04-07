@@ -1,17 +1,6 @@
 <?php
-function MyAutoLoad($classname) {
-	$extention = spl_autoload_extensions();
-	require_once(__DIR__ . '/' . $classname . $extention);
-}
-spl_autoload_extensions('.class.php');
-spl_autoload_register('MyAutoLoad');
-
-
 	
-
-echo "Conexão Encerrada";
-
-	class DB {
+	class Connection {
 		private $servername;
 		private $username;
 		private $password;
@@ -26,36 +15,19 @@ echo "Conexão Encerrada";
 			$this->conn = "";
 		}
 
-		public function conectaDB() {
+		public function getConn() {
 			$this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
-
-			if(!$this->conn) {
-				echo "conn é nulo";
-				$this->conn;
-				$this->conn = null;
-			}
+			
 			return $this->conn;
 		}
 
-		public function fechaDB() {
+		public function closeConn() {
 			mysqli_close($this->conn);
 		}
 
-		public function insertTablePaciente(Paciente $paciente) {
-			if(!$this->conn){
-				$msg = "Falha na conexão";
-			}
-			else {
-				$sql = "INSERT INTO paciente (cpf, nome, nome_social, data_nascimento, sexo, telefone) VALUES ('".$paciente->getCPF()."','".$paciente->getNome()."', '".$paciente->getNomeSocial()."', '".$paciente->getDataNascimento()."', '".$paciente->getSexo()."', '".$paciente->getTelefone()."')";
+	
 
-				if(mysqli_query($this->conn, $sql)) {	
-					$msg = 'Dados inseridos';
-				} else {
-					$msg = $sql;
-				}
-			}
-			return $msg;
-		}
+		
 
 		public function insertTableConvenio(Convenio $c) {
 			if(!$this->conn){
@@ -72,28 +44,7 @@ echo "Conexão Encerrada";
 			return $msg;
 		}
 
-		public function retrieveTablePaciente($cpf) {
-			if(!$this->conn){
-				$msg = "Falha na conexão";
-			}
-			else {
-				$sql = "SELECT * FROM paciente WHERE cpf = '".$cpf."'";
-				$dados = $this->conn->query($sql);
-			
-				if ($dados->num_rows > 0) {					
-					// output data of each row
-					while($row = $dados->fetch_assoc()) {
-						echo "cpf: " . $row["cpf"]. " - Name: " . $row["nome"]. " <br>";
-						$p = new Paciente($row["cpf"], $row["nome"], $row["data_nascimento"], $row["sexo"], $row["telefone"]);
-						$p->setNomeSocial = $row["nome_social"];
-						return $p;
-					}
-				} else {
-					return NULL;
-					echo "0 results";
-				}
-			}
-		}
+		
 
 		public function retrieveTableConvenio($nome) {
 			if(!$this->conn){
