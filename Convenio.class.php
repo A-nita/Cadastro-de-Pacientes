@@ -40,12 +40,12 @@
 
 		
 
-		public function retrieveTableConvenio($conn) {
+		public function retrieveTableConvenio($nome, $conn) {
 			if(!$conn){
 				$msg = "Falha na conexão";
 			}
 			else {
-				$sql = "SELECT * FROM convenio WHERE nome = '".$this->nome."'";
+				$sql = "SELECT * FROM convenio WHERE nome = '".$nome."'";
 				$dados = $conn->query($sql);
 			
 				if ($dados->num_rows > 0) {					

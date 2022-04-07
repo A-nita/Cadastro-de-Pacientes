@@ -23,15 +23,14 @@
 	// $p->deletePaciente($conn);
 	// echo($p->getNome());
 	$c = new Convenio();
-	$c->setNome("Unimed");
+	$c->setNome("batata");
 	$c->setTipoPlano("NULL");
 	$c->setAbrangenciaAtuacao("AbrangenciaMédixa");
 	$c->setTipoAtendimento("tipo_atendimento");
 
-	$c->insertTableConvenio($conn);
 	
-	$c->retrieveTableConvenio($conn);
-	echo $c->getTipoPlano();
+	$c->retrieveTableConvenio('Unimed', $conn);
+	echo $c->getNome();
 
 
 	$db->closeConn();
