@@ -5,15 +5,10 @@ function MyAutoLoad($classname) {
 }
 spl_autoload_extensions('.class.php');
 spl_autoload_register('MyAutoLoad');
+
+
 	
-$c = new Convenio("Unimed", "Plano de saúde", "AbrangenciaMédixa", "Atendimento top");
-echo $c->getNome();
-$db = new DB();
-$db->conectaDB();
-$db->insertTableConvenio($c);
-$c2 = $db->retrieveTableConvenio("Unimed");
-echo $c2->getNome();
-$db->fechaDB();
+
 echo "Conexão Encerrada";
 
 	class DB {
@@ -120,6 +115,24 @@ echo "Conexão Encerrada";
 					echo "0 results";
 				}
 			}
+		}
+
+		public function updateTablePaciente(Paciente $p) {
+			if(!$this->conn){
+				$msg = "Falha na conexão";
+			}
+			$sql = "UPDATE paciente SET nome='".$p->getNome()."', telefone='".$p->getTelefone()."', nome_social='".$p->getNomeSocial()."'  WHERE cpf='".$p->getCPF()."'";
+
+			$up = $this->conn->query($sql);
+		}
+
+		public function deleteTablePaciente($cpf) {
+			if(!$this->conn){
+				$msg = "Falha na conexão";
+			}
+			$sql = "DELETE FROM paciente WHERE cpf = '".$cpf."'";
+			$this->conn->query($sql);
+
 		}
 	}		
 ?>

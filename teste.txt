@@ -5,3 +5,27 @@ $db->insertTablePaciente($p);
 $p2 = $db->retrieveTablePaciente("12345678910");
 echo $p2->getNome();
 $db->fechaDB();
+
+
+
+
+$c = new Convenio("Unimed", "Plano de saúde", "AbrangenciaMédixa", "Atendimento top");
+echo $c->getNome();
+$db = new DB();
+$db->conectaDB();
+$db->insertTableConvenio($c);
+$c2 = $db->retrieveTableConvenio("Unimed");
+echo $c2->getNome();
+$db->fechaDB();
+
+$db = new DB();
+$db->conectaDB();
+$p = $db->retrieveTablePaciente("12345678910");
+$p->setNomeSocial("Paulinho");
+$db->updateTablePaciente($p);
+$db->fechaDB();
+
+$db = new DB();
+$db->conectaDB();
+$db->deleteTablePaciente("49297564801");
+$db->fechaDB();
